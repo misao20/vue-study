@@ -4,14 +4,14 @@ const config = {
     baseUrl: 'https://api.hnpwa.com/v0',
 }
 
-function fetchNewsList() {
-    return axios.get(`${config.baseUrl}/news/1.json`)
+function fetchNewsList(page) {
+    return axios.get(`${config.baseUrl}/news/${page}.json`)
 }
-function fetchJobsList() {
-    return axios.get(`${config.baseUrl}/jobs/1.json`)
+function fetchJobsList(page) {
+    return axios.get(`${config.baseUrl}/jobs/${page}.json`)
 }
-function fetchAskList() {
-    return axios.get(`${config.baseUrl}/ask/1.json`)
+function fetchAskList(page) {
+    return axios.get(`${config.baseUrl}/ask/${page}.json`)
 }
 function fetchUserInfo(id) {
     return axios.get(`${config.baseUrl}/user/${id}.json`)

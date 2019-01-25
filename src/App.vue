@@ -20,4 +20,9 @@ export default {
     margin: 0;
     padding: 0;
   }
+  ul + div { text-align: center }
+  ul + div > a { 
+      display: inline-block; 
+      padding: 8px;
+  }
 </style>
