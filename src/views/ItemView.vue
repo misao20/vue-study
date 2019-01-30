@@ -1,14 +1,21 @@
 <template>
     <div>
-        <h2>{{ itemList.title }}</h2>
-        <small>
-            {{ itemList.time_ago }} by
-            <router-link :to="`/user/${itemList.user}`">{{ itemList.user }}</router-link>
-        </small>
-        <p v-html="itemList.content"></p>
+        <section>
+            <h2>{{ itemList.title }}</h2>
+            <div class="user-container">
+                <div><font-awesome-icon icon="user" /></div>
+                <div class="user-description">
+                    <router-link :to="`/user/${itemList.user}`">{{ itemList.user }}</router-link>
+                    <div class="time">{{ itemList.time_ago }}</div>
+                </div>
+            </div>
+            <div v-html="itemList.content"></div>
+        </section>
 
-        <h3>Comment [{{ itemList.comments_count }}]</h3>
-        <comment-vue :propsdata="itemList.comments"></comment-vue>
+        <section>
+            <h3>Comment [{{ itemList.comments_count }}]</h3>
+            <comment-vue :propsdata="itemList.comments"></comment-vue>
+        </section>
     </div>
 </template>
 
@@ -32,5 +39,19 @@ export default {
 </script>
 
 <style>
-
+.user-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0.5rem;
+}
+.fa-user {
+    font-size: 2rem;
+}
+.user-description {
+    padding-left: 8px;
+}
+.time {
+    font-size: 0.7rem;
+}
 </style>
