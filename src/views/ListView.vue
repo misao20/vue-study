@@ -50,7 +50,7 @@ export default {
         // }
 
         page: function () {
-            const name = this.$route.name;
+            const name = this.$route.params.first;
             if (name === 'news') {
                 return 10;
             } else if (name === 'ask') {
@@ -75,16 +75,10 @@ export default {
     methods: {
         fetchData () {
             const params = this.$route.params;
+
             let page = params.page?params.page:1;
             const name = params.first;
-            let dispatchName;
-            // if (name === 'news') {
-            //     dispatchName = 'FETCH_NEWS';
-            // } else if (name === 'ask') {
-            //     dispatchName = 'FETCH_ASK';
-            // } else if (name === 'jobs') {
-            //     dispatchName = 'FETCH_JOBS';
-            // }
+
             bus.$emit('start:spinner');
             setTimeout(() => {
                 this.$store.dispatch('FETCH_LIST', {'first': name, 'page': page})

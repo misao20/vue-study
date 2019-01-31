@@ -4,15 +4,6 @@ const config = {
     baseUrl: 'https://api.hnpwa.com/v0',
 }
 
-// function fetchNewsList(page) {
-//     return axios.get(`${config.baseUrl}/news/${page}.json`)
-// }
-// function fetchJobsList(page) {
-//     return axios.get(`${config.baseUrl}/jobs/${page}.json`)
-// }
-// function fetchAskList(page) {
-//     return axios.get(`${config.baseUrl}/ask/${page}.json`)
-// }
 function fetchList(first, page) {
     return axios.get(`${config.baseUrl}/${first}/${page}.json`)
 }
@@ -24,9 +15,6 @@ function fetchItem(id) {
 }
 
 export {
-    // fetchNewsList,
-    // fetchJobsList,
-    // fetchAskList,
     fetchList,
     fetchUserInfo,
     fetchItem,
