@@ -2,13 +2,11 @@
     <div>
         <section>
             <h2>{{ itemList.title }}</h2>
-            <div class="user-container">
-                <div><font-awesome-icon icon="user" /></div>
-                <div class="user-description">
-                    <router-link :to="`/user/${itemList.user}`">{{ itemList.user }}</router-link>
-                    <div class="time">{{ itemList.time_ago }}</div>
-                </div>
-            </div>
+            <!-- <user-profile :info="itemList"> -->
+            <user-profile>
+                <div slot="username"><router-link :to="`/user/${itemList.user}`">{{ itemList.user }}</router-link></div>
+                <template slot="time">{{ 'Posted ' + itemList.time_ago }}</template>
+            </user-profile>
             <div v-html="itemList.content"></div>
         </section>
 
@@ -22,8 +20,13 @@
 <script>
 import { mapGetters } from 'vuex';
 import CommentVue from './Comment.vue';
+import UserProfile from '../components/UserProfile.vue';
 
 export default {
+    components: {
+        UserProfile,
+        CommentVue
+    },
     computed: {
         ...mapGetters({
             itemList: 'fetchedItem'
@@ -32,26 +35,8 @@ export default {
     created() {
         this.$store.dispatch('FETCH_ITEM', this.$route.params.id)
     },
-    components: {
-        'comment-vue': CommentVue
-    }
 }
 </script>
 
 <style>
-.user-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0.5rem;
-}
-.fa-user {
-    font-size: 2rem;
-}
-.user-description {
-    padding-left: 8px;
-}
-.time {
-    font-size: 0.7rem;
-}
 </style>
