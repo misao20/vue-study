@@ -23,7 +23,8 @@
             </li>
         </ul>
         <div v-if="page > 1">
-            <router-link v-for="no in page" :key="no" :to="`/${name}/${no}`">{{ no }}</router-link>
+            <button v-for="no in page" :key="no" @click="goPage(no)">{{ no }}</button>
+            <!-- <router-link v-for="no in page" :key="no" :to="`/${name}/${no}`">{{ no }}</router-link> -->
         </div>
     </div>
 </template>
@@ -89,6 +90,9 @@ export default {
                     .catch((error) => console.log(error));
             }, 1000);
         },
+        goPage (page) {
+            this.$router.push(`/${this.$route.params.first}/${page}`);
+        }
     }
 }
 </script>

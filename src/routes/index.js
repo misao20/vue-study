@@ -13,7 +13,7 @@ export const router = new VueRouter({
             { path: '/', redirect: 'news' },
             { path: '/:first(news|ask|jobs)', component: ListView,
                 children: [
-                    { path:':page(1|2)', component: ListView }
+                    { path:':page([0-9]+)', component: ListView }
                 ]
             },
             { path: '/item/:id([0-9]{8})', component: ItemView },
