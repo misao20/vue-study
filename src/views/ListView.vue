@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 import bus from '../utils/bus.js';
 
 export default {
@@ -52,13 +52,15 @@ export default {
 
         page: function () {
             const name = this.$route.params.first;
+            let returnVal;
             if (name === 'news') {
-                return 10;
+                returnVal = 10;
             } else if (name === 'ask') {
-                return 2;
+                returnVal =  2;
             } else if (name === 'jobs') {
-                return 1;
+                returnVal =  1;
             }
+            return returnVal;
         }
     },
     data() {
@@ -84,7 +86,7 @@ export default {
             setTimeout(() => {
                 this.$store.dispatch('FETCH_LIST', {'first': name, 'page': page})
                     .then(() => {
-                        console.log('fetched');
+                        // console.log('fetched');
                         bus.$emit('end:spinner');
                     })
                     .catch((error) => console.log(error));
